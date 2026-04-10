@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Gets a list of all of the manual pages, and uses
+# dmenu to get a selection from the user. Then it is converted to a pdf and viewed with
+# zathura. If that fails, $TERMINAL (fallback st) is used to view the regular manpage instead.
+
+# raw choice
+choice=$(
+man -k . |
+	dmenu -p "Pick a manual"
+)
+
+# get the item
+item=$(
+echo $choice | 
+	cut -d ' ' -f1 | 
+		cut -d '(' -f1
+)
+
+# get the category
+category=$(
+echo $choice | 
+	awk '{print $1}' | 
+		cut -d '(' -f2  |
+			cut -d ')' -f1 |
+				cut -d ',' -f1
+
+			)
+
+man $category $item -T pdf | zathura - || ${TERMINAL:-st} -e man $category $item

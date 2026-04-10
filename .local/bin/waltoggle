@@ -1,0 +1,45 @@
+#!/bin/sh
+set -x
+
+status="${XDG_CONFIG_HOME:-$HOME/.config}/x11/wal_status"
+wallscript="$HOME/.local/bin/setbg"
+
+[ -f "$status" ] ||
+    printf 0 > "$status"
+read -r wal <"$status"
+wal=${wal:-0}
+
+_reload() {
+    if [ "$wal" -gt 0 ]; then
+        "$wallscript"  -x &
+        pkill -1 dwm
+    else
+        xrdb -remove ~/.cache/wal/colors.Xresources
+        xrdb -merge ~/.config/x11/Xresources
+        pkill -USR1 -x st
+        i3-msg reload
+        pkill -1 dwm
+        cp ~/.config/dunst/dunstrc.default ~/.config/dunst/dunstrc
+        killall -SIGKILL dunst
+        dunst &
+        notify-send "now using Xresources, and not pywal"
+    fi
+}
+_sync(){ # this function just syncs settings with file, does not toggle
+    if [ "$wal" -gt 0 ]; then
+        sed -i 's/#\(wal -i .*\)/\1/g' "$wallscript"
+        sed -i 's/#\(sleep 1\)/\1/g' "$wallscript"
+        _reload
+    else 
+        sed -i 's/wal -i .*/#&/g' "$wallscript"
+        sed -i 's/sleep 1/#&/g' "$wallscript"
+        _reload
+    fi
+}
+_toggle(){
+    wal=$((wal ^ 1))
+    printf "%s\n" "$wal" > "$status"
+    _sync
+}
+
+_toggle

@@ -1,0 +1,33 @@
+#!/bin/sh
+# dead simple theme switcher using tinty (or pywal) & dmenu (or an alternative)
+
+launcher="dmenu -p"
+opt() {
+#        choice=$(tinty list | $launcher "theme?" -l 10) || exit
+
+        # pywal
+        choice=$(wal -f | awk '{ print $2 }' | $launcher "theme?" -l 10) || exit
+        bg=$(echo "light\ndark" | $launcher "bg?")
+}
+
+{ [ -z "$1" ] && opt ;} || choice="$1" bg="$2"
+
+#tinty apply $choice || exit
+
+# for pywal
+case "$bg" in
+    dark)
+        wal -f $choice -o ~/.config/wal/postrun || exit
+        ;;
+    light)
+        wal -f $choice -l -o ~/.config/wal/postrun || exit
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+#echo $choice > ~/.local/share/theme
+echo $choice $bg > ~/.local/share/theme
+pkill -USR1 st &
+#pkill -1 dwm &

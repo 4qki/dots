@@ -1,0 +1,6 @@
+#!/bin/sh
+set -x
+
+printf "$(printf >/dev/null 2>&1 | dmenu -i -p "Calc:" -fn "monospace-18" -c)" > /tmp/calc
+notify-send "$(qalc -c=false -f /tmp/calc)"
+

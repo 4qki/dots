@@ -1,0 +1,39 @@
+# vim: filetype=sh
+
+# Editor
+export EDITOR="nvim"
+export VISUAL="${EDITOR:-nvim}"
+
+# Path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin/statusbar:$PATH"
+
+# Pager
+export PAGER="less"
+export LESS_TERMCAP_mb=$'\e[1;31m'   
+export LESS_TERMCAP_md=$'\e[1;36m'  
+export LESS_TERMCAP_me=$'\e[0m'    
+export LESS_TERMCAP_se=$'\e[0m'   
+export LESS_TERMCAP_so=$'\e[1;44;97m'
+export LESS_TERMCAP_ue=$'\e[0m'     
+export LESS_TERMCAP_us=$'\e[1;32m' 
+
+# Xcursor
+export XCURSOR_THEME="Bibata-Original-Classic"
+export XCURSOR_SIZE="24"
+
+# Terminal
+export TERMINAL="st"
+
+# XDG specifications
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# ~/ cleanup
+export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export HISTFILE="$XDG_DATA_HOME/history"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/shell/inputrc"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"

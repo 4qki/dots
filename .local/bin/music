@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# This file lists all files in your music directory, allows to choose one with dmenu
+# and plays it with mpv. However, instead of just listing the filenames, it will get the artist
+# name and the title.
+mdir="$HOME/music"
+cache="$HOME/.cache/music_list.txt"
+
+if [ ! -f "$cache" ]; then
+    mkdir -p "$(dirname "$cache")"
+    find "$mdir" -type f \( -iname "*.mp3" -o -iname "*.flac" \) | while read -r f; do
+        artist=$(ffprobe -v error -show_entries format_tags=artist -of default=noprint_wrappers=1:nokey=1 "$f")
+        title=$(ffprobe -v error -show_entries format_tags=title -of default=noprint_wrappers=1:nokey=1 "$f")
+        [ -z "$artist" ] && artist="Unknown Artist"
+        [ -z "$title" ] && title="$(basename "$f")"
+        printf "%s - %s ::: %s\n" "$artist" "$title" "$f" >> "$cache"
+    done
+fi
+
+# Show menu instantly
+selection=$(cat "$cache" | dmenu -i -l 20)
+file="${selection##*::: }"
+[ -n "$file" ] && mpv "$file"

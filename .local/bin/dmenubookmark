@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Uses dmenu to show all bookmarks from ~/.local/share/bookmarks.
+# Opens selected with xdg.
+
+# checks if bookmark file exists. If not, send notif and exit
+[ -f "$HOME/.local/share/bookmarks" ] || exit 1
+
+# Get bookmarks from file
+bm=$(cat ~/.local/share/bookmarks)
+
+# Select bookmark with dmenu
+choice=$(printf "%s" "${bm}" | dmenu -b -i -p "What bookmark to open?" )
+
+# Open with xdg
+xdg-open "$choice"

@@ -1,0 +1,24 @@
+#!/bin/sh
+# This is a simple wrapper for 'nmcli' and it's supposed to make connecting/disconnecting
+# to Wi-Fi networks easier and more interactive.
+
+main_menu_options="connect disconnect list"
+main_menu_prompt="What would you like to do?"
+nmcli="$(which nmcli)"
+colors="#1d2021 #458588 #cc241d #98971a #689d6a #ebdbb2 #555555"
+
+# helper funcs
+_color(){ echo "$colors" | cut -d ' ' -f"$1"; }
+_gum(){ gum "$@" --header.foreground="$(_color 2)" --cursor.foreground="$(_color 5)" --item.foreground="$(_color 7)"; }
+_connect_menu(){
+    _gum choose $(nmcli -t -f SSID device wifi | awk 'NF') --header="Choose a Wi-Fi network:"
+}
+
+main_opt="$(
+    _gum choose $main_menu_options --header="$main_menu_prompt"
+)"
+
+# parse user choices
+case $main_opt in
+    connect) _connect_menu ;;
+esac

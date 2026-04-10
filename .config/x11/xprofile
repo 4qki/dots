@@ -1,0 +1,16 @@
+#!/bin/sh
+#picom &
+xcompmgr &
+hwall --restore &
+#pwl restart &
+brightnessctl s 100% &
+clipmenud &
+mpd &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+#xss-lock -- i3lock -n &
+
+switcher $(cat ~/.local/share/theme)
+#xrdb -merge "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources" &
+
+# goodness sake
+setxkbmap -option ctrl:nocaps &

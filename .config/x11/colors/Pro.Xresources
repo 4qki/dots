@@ -1,0 +1,69 @@
+! Pro
+
+! Foreground / Background
+*foreground:        #f2f2f2
+*background:        #000000
+*.foreground:       #f2f2f2
+*.background:       #000000
+emacs*foreground:   #f2f2f2
+emacs*background:   #000000
+URxvt*foreground:   #f2f2f2
+XTerm*foreground:   #f2f2f2
+UXTerm*foreground:  #f2f2f2
+URxvt*background:   [100]#000000
+XTerm*background:   #000000
+UXTerm*background:  #000000
+URxvt*cursorColor:  #4d4d4d
+XTerm*cursorColor:  #4d4d4d
+UXTerm*cursorColor: #4d4d4d
+URxvt*borderColor:  [100]#000000
+
+! Colors 0–15
+*.color0:  #000000
+*color0:   #000000
+*.color1:  #990000
+*color1:   #990000
+*.color2:  #00a600
+*color2:   #00a600
+*.color3:  #999900
+*color3:   #999900
+*.color4:  #2009db
+*color4:   #2009db
+*.color5:  #b200b2
+*color5:   #b200b2
+*.color6:  #00a6b2
+*color6:   #00a6b2
+*.color7:  #bfbfbf
+*color7:   #bfbfbf
+*.color8:  #666666
+*color8:   #666666
+*.color9:  #e50000
+*color9:   #e50000
+*.color10: #00d900
+*color10:  #00d900
+*.color11: #e5e500
+*color11:  #e5e500
+*.color12: #0000ff
+*color12:  #0000ff
+*.color13: #e500e5
+*color13:  #e500e5
+*.color14: #00e5e5
+*color14:  #00e5e5
+*.color15: #e5e5e5
+*color15:  #e5e5e5
+
+! Black unaffected by bold
+*.color66: #000000
+*color66:  #000000
+
+! Xclock colors
+XClock*foreground: #f2f2f2
+XClock*background: #000000
+XClock*majorColor:  rgba:bf/bf/bf/ff
+XClock*minorColor:  rgba:bf/bf/bf/ff
+XClock*hourColor:   rgba:bf/bf/bf/ff
+XClock*minuteColor: rgba:bf/bf/bf/ff
+XClock*secondColor: rgba:99/00/00/ff
+
+! Transparency
+URxvt*depth: 32

@@ -1,0 +1,64 @@
+! Solarized Light
+*foreground:        #657b83
+*background:        #fdf6e3
+*.foreground:       #657b83
+*.background:       #fdf6e3
+emacs*foreground:   #657b83
+emacs*background:   #fdf6e3
+URxvt*foreground:   #657b83
+XTerm*foreground:   #657b83
+UXTerm*foreground:  #657b83
+URxvt*background:   [100]#fdf6e3
+XTerm*background:   #fdf6e3
+UXTerm*background:  #fdf6e3
+URxvt*cursorColor:  #586e75
+XTerm*cursorColor:  #586e75
+UXTerm*cursorColor: #586e75
+URxvt*borderColor:  [100]#fdf6e3
+
+! Colors 0-15.
+*.color0:  #073642
+*color0:   #073642
+*.color1:  #dc322f
+*color1:   #dc322f
+*.color2:  #859900
+*color2:   #859900
+*.color3:  #b58900
+*color3:   #b58900
+*.color4:  #268bd2
+*color4:   #268bd2
+*.color5:  #d33682
+*color5:   #d33682
+*.color6:  #2aa198
+*color6:   #2aa198
+*.color7:  #eee8d5
+*color7:   #eee8d5
+*.color8:  #002b36
+*color8:   #002b36
+*.color9:  #cb4b16
+*color9:   #cb4b16
+*.color10: #586e75
+*color10:  #586e75
+*.color11: #657b83
+*color11:  #657b83
+*.color12: #839496
+*color12:  #839496
+*.color13: #6c71c4
+*color13:  #6c71c4
+*.color14: #93a1a1
+*color14:  #93a1a1
+*.color15: #fdf6e3
+*color15:  #fdf6e3
+
+*.color66: #fdf6e3
+*color66:  #fdf6e3
+
+XClock*foreground: #657b83
+XClock*background: #fdf6e3
+XClock*majorColor:  rgba:65/7b/83/ff
+XClock*minorColor:  rgba:65/7b/83/ff
+XClock*hourColor:   rgba:65/7b/83/ff
+XClock*minuteColor: rgba:65/7b/83/ff
+XClock*secondColor: rgba:65/7b/83/ff
+
+URxvt*depth: 32

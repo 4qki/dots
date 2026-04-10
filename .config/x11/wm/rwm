@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# This file gets ran by `startx`
+
+xset r rate 180 70
+#[ -f "$HOME/.config/x11/xprofile" ] && . "$HOME/.config/x11/xprofile"
+sxhkd &
+
+
+# launch window manager
+eval "$(ssh-agent -s)"
+dbus-launch --exit-with-session $HOME/docs/projects/rwm/rwm

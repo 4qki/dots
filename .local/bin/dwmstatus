@@ -1,0 +1,7 @@
+#!/bin/sh
+# simple reload script for dwmblocks
+
+if pgrep -x dwmblocks; then
+    killall dwmblocks
+fi
+dwmblocks

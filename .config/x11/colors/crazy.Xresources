@@ -1,0 +1,64 @@
+! Random Color Scheme - Black Background
+*foreground:        #a8e3f2
+*background:        #000000
+*.foreground:       #a8e3f2
+*.background:       #000000
+emacs*foreground:   #a8e3f2
+emacs*background:   #000000
+URxvt*foreground:   #a8e3f2
+XTerm*foreground:   #a8e3f2
+UXTerm*foreground:  #a8e3f2
+URxvt*background:   [100]#000000
+XTerm*background:   #000000
+UXTerm*background:  #000000
+URxvt*cursorColor:  #ff6b9d
+XTerm*cursorColor:  #ff6b9d
+UXTerm*cursorColor: #ff6b9d
+URxvt*borderColor:  [100]#000000
+
+! Colors 0-15.
+*.color0:  #1a0f2e
+*color0:   #1a0f2e
+*.color1:  #ff3366
+*color1:   #ff3366
+*.color2:  #2ecc71
+*color2:   #2ecc71
+*.color3:  #f39c12
+*color3:   #f39c12
+*.color4:  #3498db
+*color4:   #3498db
+*.color5:  #9b59b6
+*color5:   #9b59b6
+*.color6:  #1abc9c
+*color6:   #1abc9c
+*.color7:  #ecf0f1
+*color7:   #ecf0f1
+*.color8:  #7f8c8d
+*color8:   #7f8c8d
+*.color9:  #e74c3c
+*color9:   #e74c3c
+*.color10: #27ae60
+*color10:  #27ae60
+*.color11: #f1c40f
+*color11:  #f1c40f
+*.color12: #5dade2
+*color12:  #5dade2
+*.color13: #af7ac5
+*color13:  #af7ac5
+*.color14: #48c9b0
+*color14:  #48c9b0
+*.color15: #ffffff
+*color15:  #ffffff
+
+*.color66: #34495e
+*color66:  #34495e
+
+XClock*foreground: #a8e3f2
+XClock*background: #000000
+XClock*majorColor:  rgba:a8/e3/f2/ff
+XClock*minorColor:  rgba:a8/e3/f2/ff
+XClock*hourColor:   rgba:a8/e3/f2/ff
+XClock*minuteColor: rgba:a8/e3/f2/ff
+XClock*secondColor: rgba:a8/e3/f2/ff
+
+URxvt*depth: 32

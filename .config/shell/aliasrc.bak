@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# If Neovim is installed, use neovim instead of vim.
+type nvim >/dev/null && alias vim="nvim"
+alias 'vim.'='vim .'
+
+# If Exa is installed, use it instead of regular ls.
+type exa >/dev/null && alias ls="exa"
+
+# Ls Aliases
+alias la="ls -la"
+alias l="ls"
+alias ll="ls -l"
+alias lah="ls -lah"
+
+# If zoxide installed, use it instead of cd
+type zoxide >/dev/null && alias cd="z"
+
+# Nsxiv
+alias nx='nsxiv'
+
+# Repo stuff
+alias devrepo='cd ~/.local/src/dev/'
+alias walls='cd ~/.local/src/dev/wall'
+
+# Make dir
+alias mkd='mkdir -pv'
+
+# Make helper
+mk()
+{
+	case "$1" in
+		i)
+		doas make install
+		;;
+	m)
+		make
+		;;
+	*)
+		doas make clean install
+	esac
+}
+
+
+# Xbps
+alias xi='doas xbps-install'
+
+alias tmux="tmux -u"
+
+alias yz='yazi'
+alias ff='fastfetch'
+
+alias own='doas chown -R ark:ark .'
+
+alias fzp='fuzzypkg'
+
+[ -f "$HOME/personal/dev/xbps-is-dumb" ] && . "$HOME/personal/dev/xbps-is-dumb"

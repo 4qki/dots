@@ -1,0 +1,70 @@
+! Everforest
+! vim: ft=xdefaults
+
+! Foreground / Background
+*foreground:        #d3c6aa
+*background:        #232a2e
+*.foreground:       #d3c6aa
+*.background:       #232a2e
+emacs*foreground:   #d3c6aa
+emacs*background:   #232a2e
+URxvt*foreground:   #d3c6aa
+XTerm*foreground:   #d3c6aa
+UXTerm*foreground:  #d3c6aa
+URxvt*background:   [100]#232a2e
+XTerm*background:   #232a2e
+UXTerm*background:  #232a2e
+URxvt*cursorColor:  #98989d
+XTerm*cursorColor:  #98989d
+UXTerm*cursorColor: #98989d
+URxvt*borderColor:  [100]#232a2e
+
+! Colors 0–15
+*color0:       #7a8478
+*.color0:       #7a8478
+*color1:       #e67e80
+*.color1:       #e67e80
+*color2:       #a7c080
+*.color2:      #a7c080
+*color3:       #dbbc7f
+*.color3:      #dbbc7f
+*color4:       #7fbbb3
+*.color4:      #7fbbb3
+*color5:       #d699b6
+*.color5:      #d699b6
+*color6:       #83c092
+*.color6:      #83c092
+*color7:       #d3c6aa
+*.color7:      #d3c6aa
+*color8:       #7a8478
+*.color8:       #7a8478
+*color9:       #e67e80
+*.color9:       #e67e80
+*color10:       #a7c080
+*.color10:      #a7c080
+*color11:       #dbbc7f
+*.color11:      #dbbc7f
+*color12:       #7fbbb3
+*.color12:      #7fbbb3
+*color13:       #d699b6
+*.color13:      #d699b6
+*color14:       #83c092
+*.color14:      #83c092
+*color15:       #d3c6aa
+*.color15:      #d3c6aa
+
+! Black unaffected by bold
+*.color66: #1a1a1a
+*color66:  #1a1a1a
+
+! Xclock colors
+XClock*foreground: #d3c6aa
+XClock*background: #232a2e
+XClock*majorColor:  rgba:98/98/9d/ff
+XClock*minorColor:  rgba:98/98/9d/ff
+XClock*hourColor:   rgba:98/98/9d/ff
+XClock*minuteColor: rgba:98/98/9d/ff
+XClock*secondColor: rgba:cc/37/2e/ff
+
+! Transparency
+URxvt*depth: 32

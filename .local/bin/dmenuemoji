@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# get json emoji baby
+emoji_list=$(cat ~/.local/share/vbase/chars/emoji)
+selection=$(printf "%s\n" "$emoji_list" | dmenu -l 20 -p "Pick an Emoji") || exit
+
+# extract ze emoji
+emoji=$(printf "%s" "$selection" | awk '{print $1}') || exit
+
+# Xorg only
+printf "%s" "$emoji" | xclip -selection clipboard
+xdotool type --delay 0 --clearmodifiers "$emoji"
+
+# notif
+notify-send "$emoji copied to clipboard"

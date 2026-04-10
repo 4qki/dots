@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Standard colors - horizontal blocks
+export i
+for i in {1..5}; do
+  echo -e "\033[40m          \033[41m          \033[42m          \033[43m          \033[44m          \033[45m          \033[46m          \033[47m          \033[0m"
+done
+
+# Bright colors - horizontal blocks
+for i in {1..5}; do
+  echo -e "\033[100m          \033[101m          \033[102m          \033[103m          \033[104m          \033[105m          \033[106m          \033[107m          \033[0m"
+done

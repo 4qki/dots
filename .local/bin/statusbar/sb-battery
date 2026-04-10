@@ -1,0 +1,23 @@
+#!/bin/sh
+# this prints battery info
+
+case $BLOCK_BUTTON in
+	2)
+		notify-send "Battery module" "[1] Show device status\n[2] Show device type"
+		;;
+	1)
+		for bat in /sys/class/power_supply/BAT?; do
+			notify-send "Device status" "$(cat $bat/status)"
+		done
+		;;
+	3)
+		for bat in /sys/class/power_supply/BAT?; do
+			notify-send "Device type" "$(cat $bat/type)"
+		done
+		;;
+esac
+
+for bat in /sys/class/power_supply/BAT0; do
+#    cat "$bat/capacity" | xargs -I {} printf "󰁹 %s\n" "{}%"
+	cat "$bat/capacity" | xargs -I {} printf "[BAT] %s\n" "{}%"
+done

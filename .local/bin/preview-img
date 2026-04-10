@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Image + text preview script for fzf using ueberzug
+
+file="$1"
+X_PADDING=2
+Y_PADDING=1
+
+# Start ueberzug in the background
+ueberzug layer --parser bash 2>/dev/null <<EOF
+{
+    case "${file,,}" in
+        *.png|*.jpg|*.jpeg|*.gif|*.bmp|*.webp)
+            # Calculate image display size
+            width=$(tput cols)
+            height=$(tput lines)
+
+            # Create temporary image display
+            declare -A -g img=(
+                [path]="$file"
+                [x]=$X_PADDING
+                [y]=$Y_PADDING
+                [width]=$((width / 2))
+                [height]=$((height - 2))
+            )
+            add_overlay img
+            read  # Wait until fzf closes the preview
+            ;;
+        *)
+            # Non-image files fallback: syntax-highlighted text
+            bat --style=numbers --color=always --line-range :200 "$file" \
+                2>/dev/null || head -n 200 "$file"
+            read
+            ;;
+    esac
+}
+EOF

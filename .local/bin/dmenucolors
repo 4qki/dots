@@ -1,0 +1,13 @@
+#!/bin/sh
+choice=$(find "$HOME/.config/x11/colors" -type f \
+    | sed "s|\.Xresources$||; s|$HOME/.config/x11/colors/||" \
+    | dmenu -i -p "Colorscheme" -l 30 || exit)
+
+ln -sf "$HOME/.config/x11/colors/${choice}.Xresources" "$HOME/.config/x11/Xresources"
+xrdb -merge "$HOME/.config/x11/Xresources"
+
+pkill -USR1 st
+pkill -1 dwm
+i3-msg reload
+
+echo 0 > ~/.config/x11/wal_status

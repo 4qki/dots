@@ -1,0 +1,1 @@
+ffplay -f v4l2 -framerate 30 -video_size 640x360 -input_format mjpeg -fflags nobuffer -vf "hflip,scale=480:270" /dev/video0

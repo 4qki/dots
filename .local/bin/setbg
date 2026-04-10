@@ -1,0 +1,37 @@
+#!/bin/sh
+# This is the wallpaper script.
+
+bgloc="${bgloc:-$HOME/pics/walls}"
+bgf="$HOME/.local/share/bg"
+
+if [ -f "$1" ] || [ -d "$1" ]; then
+    case "$(file --mime-type -b "$1")" in
+        image/*)
+            bg="$(realpath "$1")" # input wallpaper
+            ;;
+        inode/directory)
+            bg="$(find "$1" -type f -not -path "$1/.git/*" | shuf -n 1)" # random wallpaper
+            bg="$(realpath "$bg")"
+            ;;
+    esac
+elif [ "$1" = "-x" ]; then
+    bg="$(cat "$bgf")"
+    xwallpaper --zoom "$bg"
+
+    # pywal
+#    wal -i $bg
+    notify-send -i "$bg" "wallpaper updated."
+    exit 0
+else
+    exec "${TERMINAL:-st}" -e lfub "$bgloc" # use `bg` to set wallpaper in lf
+fi
+
+echo "$bg" > "$bgf"
+xwallpaper --zoom "$bg"
+
+# pywal
+#wal -i $bg -o ~/.config/wal/postrun
+#sleep 1
+
+notify-send -i "$bg" "wallpaper updated."
+exit 0

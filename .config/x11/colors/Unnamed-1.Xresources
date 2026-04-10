@@ -1,0 +1,68 @@
+! Odd Defaults
+! Foreground / Background
+*foreground:        #f4f4f4
+*background:        #000000
+*.foreground:       #f4f4f4
+*.background:       #000000
+emacs*foreground:   #f4f4f4
+emacs*background:   #000000
+URxvt*foreground:   #f4f4f4
+XTerm*foreground:   #f4f4f4
+UXTerm*foreground:  #f4f4f4
+URxvt*background:   [100]#000000
+XTerm*background:   #000000
+UXTerm*background:  #000000
+URxvt*cursorColor:  #f4f4f4
+XTerm*cursorColor:  #f4f4f4
+UXTerm*cursorColor: #f4f4f4
+URxvt*borderColor:  [100]#000000
+
+! Colors 0–15
+*.color0:  #000000
+*color0:   #000000
+*.color1:  #d9522c   ! red — orange-red
+*color1:   #d9522c
+*.color2:  #66b67a   ! green — minty olive
+*color2:   #66b67a
+*.color3:  #d2a744   ! yellow — brass gold
+*color3:   #d2a744
+*.color4:  #3aa4a8   ! blue — tealish cyan
+*color4:   #3aa4a8
+*.color5:  #9b6bb0   ! magenta — lavender violet
+*color5:   #9b6bb0
+*.color6:  #4fb4aa   ! cyan — greenish teal
+*color6:   #4fb4aa
+*.color7:  #dadada   ! white — soft gray-white
+*color7:   #dadada
+*.color8:  #2a2a2a   ! bright black
+*color8:   #2a2a2a
+*.color9:  #ff7040   ! bright red — coral orange
+*color9:   #ff7040
+*.color10: #7cd490   ! bright green — cool mint
+*color10:  #7cd490
+*.color11: #ebc25d   ! bright yellow — warm ochre
+*color11:  #ebc25d
+*.color12: #5ac0bf   ! bright blue — aqua blue
+*color12:  #5ac0bf
+*.color13: #b488c7   ! bright magenta — amethyst
+*color13:  #b488c7
+*.color14: #66d0b9   ! bright cyan — seafoam
+*color14:  #66d0b9
+*.color15: #ffffff   ! bright white
+*color15:  #ffffff
+
+! Black unaffected by bold
+*.color66: #000000
+*color66:  #000000
+
+! Xclock colors
+XClock*foreground: #f4f4f4
+XClock*background: #000000
+XClock*majorColor:  rgba:da/da/da/ff
+XClock*minorColor:  rgba:da/da/da/ff
+XClock*hourColor:   rgba:da/da/da/ff
+XClock*minuteColor: rgba:da/da/da/ff
+XClock*secondColor: rgba:d9/52/2c/ff
+
+! Transparency
+URxvt*depth: 32

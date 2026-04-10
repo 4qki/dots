@@ -1,0 +1,24 @@
+#!/bin/sh
+# This script gets volume information
+
+case $BLOCK_BUTTON in
+	2)
+		notify-send "Volume module" "[1] Show audio mixer\n[2] toggle mic mute"
+		;;
+	1)
+		"${TERMINAL:-st}" -e pulsemixer
+		;;
+	3)
+		pamixer -t
+		;;
+esac
+
+vol=$(pamixer --get-volume-human)
+
+case $vol in
+#     muted) icon="󰝟" ;; *) icon="󰕾" ;;
+#    muted) icon="[VOL]" ;; *) icon="[VOL]" ;;
+esac
+
+#printf "$icon %s\n" "$vol"
+echo "volume: $vol"

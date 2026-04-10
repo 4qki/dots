@@ -1,0 +1,13 @@
+#!/bin/sh
+set -x
+
+hexcode=$(xcolor)
+
+preview="/tmp/colorpreview.png"
+
+magick -size 64x64 "xc:$hexcode" "$preview"
+
+notify-send -i "$preview" "$hexcode"
+echo "$hexcode" | xclip -selection clipboard
+
+rm "$preview"

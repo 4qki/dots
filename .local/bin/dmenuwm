@@ -1,0 +1,4 @@
+#!/bin/sh
+choice=$(ls "$HOME/.config/x11/wm" | dmenu -i -p "Pick a wm" || exit)
+rm -fr "$HOME/.config/x11/xinitrc"
+ln -sf "$HOME/.config/x11/wm/$choice" "$HOME/.config/x11/xinitrc"

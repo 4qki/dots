@@ -1,0 +1,99 @@
+#!/bin/sh
+# aliases and other shortcuts
+
+alias coolbat='bat --language=conf --style=plain --theme=ansi'
+alias bat='bat --style=plain --theme=ansi'
+
+# open scripts
+se(){
+	find ~/.local/bin | fzf | xargs -I {} "${EDITOR:-${VISUAL:-vim}}" "{}"
+}
+mk(){
+	case $1 in
+		i) doas make install ;;
+		m) make ;;
+		c) doas make clean install ;;
+		*) doas make install ;;
+	esac
+}
+
+command -v z>/dev/null && alias cd='z' # smart cd (eval "$(zoxide init zsh)")
+command -v nvim>/dev/null && alias vim='nvim' # self explanatory
+command -v helix>/dev/null && alias hx='helix' # self explanatory
+command -v lfub>/dev/null && alias lf='lfub' # ueberzug in lf
+
+# xinitrc
+[ -f "$XINITRC" ] && alias startx='startx $XINITRC'
+
+# doas commands
+for cmd in xbps-install xbps-remove pacman poweroff reboot sv; do
+  alias $cmd="doas $cmd"
+done; unset cmd
+
+# listing of files
+alias \
+  la='ls -la' \
+  ll='ls -ll' \
+  lh='ls -lh' \
+  lah='ls -lah' \
+  lax='ls -lax' 
+
+# colored commands
+alias \
+  ls='ls --color=auto'\
+  grep='grep --color=auto' \
+  diff='diff --color=auto' \
+  ip='ip --color=auto'
+
+# verbose commands
+alias \
+  mkd='mkdir -pv' \
+  mv="mv -iv" \
+  bc="bc -ql" \
+  rsync="rsync -vrPlu" \
+  ffmpeg="ffmpeg -hide_banner" \
+  rm="rm -vI" \
+
+# long commands
+alias \
+  ka='killall' \
+  g='git' \
+  yt='yt-dlp --embed-metadata -i -o "%(uploader)s/%(playlist)s/%(title)s.%(ext)s"' \
+  yta='yt -x -f bestaudio/best' \
+  sn='shutdown -h now' \
+  zt='zathura' \
+  fp='yay -Slq | sk --multi --preview "yay -Si {1}" | xargs -ro yay -S' \
+  own="doas chown $(whoami):$(whoami) -R" \
+  pf='PF_INFO="title os host kernel
+uptime pkgs palette" pfetch' \
+  nf='fastfetch -c neofetch' \
+  xi='xbps-install' \
+  xq='xbps-query' \
+  xr='xbps-remove' \
+  wg='wget -qO ' \
+  ff='fastfetch'
+
+# spelling errors
+alias \
+  gerp='grep' \
+  alais='alias' \
+  vi='vim' \
+  vimk='vim' \
+  suod='doas' \
+  doass='doas' \
+  dias='doas' \
+  axrgs='xargs' \
+  xargsr='xargs' \
+  mann='man' \
+  lla='la' \
+  cdd='cd' \
+  vmi='vim' \
+  qget='wget' \
+  wegt='wget'
+
+# files and directories
+alias \
+    cfi='vim ~/.config/i3/config' \
+    cfz='vim ~/.config/zsh/.zshrc' \
+    cfv='vim ~/.config/nvim/init.vim' \
+

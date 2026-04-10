@@ -1,0 +1,35 @@
+#!/bin/bash
+# bg0="#151515"; fg0="#efefef"; bg1="#2d2d2d" # default-dark
+# bg0="#232a2e"; fg0="#d3c6aa"; bg1="#2d353b"  # everforest
+# bg0="#191724"; fg0="#e0def4"; bg1="#26233a"  # rosepine
+# bg0="#191724"; fg0="#e0def4"; bg1="#26233a"  # rosepine
+# bg0="#282828"; fg0="#ebdbb2"; bg1="#458588"  # gruvbox
+# bg0="#1f1f28"; fg0="#dcd7ba"; bg1="#2d4f67"  # kanagawa
+
+#A="^c$bg1^^b$bg1^^c$fg0^"; B="^b$bg0^^c$bg1^^c$fg0^"
+# update_bat() { bat="$A$()$B"; }
+update_vol() { vol="$(sb-volume)"; }
+update_date() { dat="$(sb-date)"; }
+update_music() { mus="$(sb-date)"; }
+
+display () { xsetroot -name "$vol $dat"; }
+
+update_music
+update_vol
+update_date
+display
+
+echo -n "$$" > "$XDG_RUNTIME_DIR"/status-info
+
+trap "update_vol;display" 35
+trap "update_inp;display" 36
+
+sec=0
+while :; do
+	sleep 1 & wait && { 
+		[ $((sec % 1)) -eq 0 ] && update_bat
+		[ $((sec % 15)) -eq 0 ] && update_dat
+		[ $((sec % 2 )) -eq 0 ] && display
+		sec=$((sec + 1))
+	}
+done 

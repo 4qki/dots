@@ -1,0 +1,68 @@
+! Gruvbox Dark Hard
+! Foreground / Background
+*foreground:        #ebdbb2
+*background:        #000000
+*.foreground:       #ebdbb2
+*.background:       #000000
+emacs*foreground:   #ebdbb2
+emacs*background:   #000000
+URxvt*foreground:   #ebdbb2
+XTerm*foreground:   #ebdbb2
+UXTerm*foreground:  #ebdbb2
+URxvt*background:   [100]#000000
+XTerm*background:   #000000
+UXTerm*background:  #000000
+URxvt*cursorColor:  #ebdbb2
+XTerm*cursorColor:  #ebdbb2
+UXTerm*cursorColor: #ebdbb2
+URxvt*borderColor:  [100]#000000
+
+! Colors 0-15.
+*.color0:  #000000
+*color0:   #000000
+*.color1:  #cc241d
+*color1:   #cc241d
+*.color2:  #98971a
+*color2:   #98971a
+*.color3:  #d79921
+*color3:   #d79921
+*.color4:  #458588
+*color4:   #458588
+*.color5:  #b16286
+*color5:   #b16286
+*.color6:  #689d6a
+*color6:   #689d6a
+*.color7:  #a89984
+*color7:   #a89984
+*.color8:  #928374
+*color8:   #928374
+*.color9:  #fb4934
+*color9:   #fb4934
+*.color10: #b8bb26
+*color10:  #b8bb26
+*.color11: #fabd2f
+*color11:  #fabd2f
+*.color12: #83a598
+*color12:  #83a598
+*.color13: #d3869b
+*color13:  #d3869b
+*.color14: #8ec07c
+*color14:  #8ec07c
+*.color15: #ebdbb2
+*color15:  #ebdbb2
+
+! Black color that will not be affected by bold highlighting.
+*.color66: #000000
+*color66:  #000000
+
+! Xclock colors.
+XClock*foreground: #ebdbb2
+XClock*background: #000000
+XClock*majorColor:  rgba:eb/db/b2/ff
+XClock*minorColor:  rgba:eb/db/b2/ff
+XClock*hourColor:   rgba:eb/db/b2/ff
+XClock*minuteColor: rgba:eb/db/b2/ff
+XClock*secondColor: rgba:eb/db/b2/ff
+
+! Set depth to make transparency work.
+URxvt*depth: 32

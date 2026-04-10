@@ -1,0 +1,49 @@
+#!/bin/sh
+set -x
+# This script is for using hsetroot to find all images recursively
+# from a directory, and then display them using the nsxiv image viewer (thumbnail mode),
+# the user can select an image with `m` and then quit the program. This will set the image
+# as the X11 wallpaper using hsetroot with the arguement -cover, which is like a --zoom.
+
+
+# Wallpaper directory
+#wallpaper_dir="$HOME/.local/src/dev/wall"
+wallpaper_dir="$HOME/pics/walls"
+
+# Go to wallpaper directory
+cd "$wallpaper_dir" || exit
+
+# Create the config directory
+mkdir -p ~/.config/hwall # -path
+
+# If no --restore arguement given, pick an image using nsxiv.
+if [ "$1" != "--restore" ] && [ "$1" != "--random" ]; then
+	choice=$( find . -type f -not -path "./git/*" -printf '%T@ %p\n' | sort -nr | cut -d' ' -f2-  | sed "s|./||" | nsxiv -to - )
+
+	# handle no choice
+	[ -z "$choice" ] && exit
+
+	# Store wallpaper to a file
+	echo "$choice" > ~/.config/hwall/current_background
+fi
+
+if [ "$1" = "--random" ]; then
+  choice=$(  find . -type f -not -path "./git/*" -printf '%T@ %p\n' | sed "s/^.\///" | shuf -n 1 )
+	
+	# Store wallpaper to a file
+	echo "$choice" > ~/.config/hwall/current_background
+fi
+
+
+# handle more/less than one file
+[ "$(wc -l ~/.config/hwall/current_background | awk '{print $1}')" -gt 1 ] && exit
+[ "$(wc -l ~/.config/hwall/current_background | awk '{print $1}')" -lt 1 ] && exit
+
+# Set background
+hsetroot -cover "$(cat ~/.config/hwall/current_background)"
+
+# pywal
+#wal -i "$(cat ~/.config/hwall/current_background)" -n -s -o ~/.config/wal/postrun
+#sleep 1
+
+notify-send -i "${wallpaper_dir}/$(cat ~/.config/hwall/current_background)" "wallpaper updated."

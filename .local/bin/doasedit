@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 /path/to/file" >&2
+    exit 1
+fi
+
+target="$1"
+editor="${EDITOR:-vi}"
+tempfile="$(mktemp /tmp/doasedit.XXXXXX)" || exit 1
+trap 'rm -f "$tempfile"' EXIT
+
+# Copy target file to temp file
+doas cp "$target" "$tempfile" || exit 1
+doas chown "$(id -u):$(id -g)" "$tempfile" || exit 1
+chmod 600 "$tempfile"
+
+# Let user edit it
+"$editor" "$tempfile" || exit 1
+
+# If file changed, write it back
+if ! cmp -s "$tempfile" "$target"; then
+    doas cp "$tempfile" "$target" || exit 1
+    echo "Updated $target"
+else
+    echo "No changes made."
+fi
+

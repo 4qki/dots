@@ -1,0 +1,26 @@
+#!/bin/sh
+
+notes_dir="$HOME/docs/notes"
+
+choice="$(printf "create\ndelete\n%s\n" \
+    "$(find "$notes_dir" -mindepth 1 -type d -printf '%f\n')" \
+    | dmenu -i -p 'Notes:' -l 10000)"
+
+case "$choice" in
+    create)
+        name="$(dmenu -p 'New note name:')"
+        [ -z "$name" ] && exit 1
+        mkdir -p "$notes_dir/$name"
+        note_file="$notes_dir/$name/$name.md"
+        [ -e "$note_file" ] || touch "$note_file"
+        exec "$TERMINAL" -e "$EDITOR" "$note_file"
+        ;;
+    delete)
+        del="$(find "$notes_dir" -mindepth 1 -type d -printf '%f\n' | dmenu -i -p 'Delete note:')"
+        [ -z "$del" ] && exit 1
+        rm -rf "$notes_dir/$del"
+        ;;
+    *)
+        [ -n "$choice" ] && exec "$TERMINAL" -e "$EDITOR" "$notes_dir/$choice/$choice.md"
+        ;;
+esac

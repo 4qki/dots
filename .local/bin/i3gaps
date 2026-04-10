@@ -1,0 +1,6 @@
+#!/bin/sh
+choice=$(dmenu -p "Gaps")
+
+sed -i "s|gaps inner.*|gaps inner $choice|; s|gaps outer.*|gaps outer $choice|;" ~/.config/i3/config
+
+i3-msg reload

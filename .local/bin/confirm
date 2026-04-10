@@ -1,0 +1,6 @@
+#!/bin/sh
+choice=$(echo "No
+Yes" | dmenu -p "$1" -i)
+
+[ "$choice" = "Yes" ] && {  shift && "$@"; return 0; }
+[ "$choice" = "No" ] && return 1

@@ -1,0 +1,40 @@
+#!/bin/sh
+set -x
+
+
+# this script allows you to choose whether pywal is used or not for
+# the colorschemes. the confirm script is not used because it is too simple for this.
+if [ ! -t 0 ]; then
+    read choice
+else
+    choice=$(printf "yes\nno" | dmenu -i -p "Use pywal?" || exit)
+fi
+
+if [ "$choice" = "yes" ]; then
+	sed -i 's/#\(wal -i .*\)/\1/' ~/.local/bin/setbg
+	sed -i 's/#\(sleep 1\)/\1/' ~/.local/bin/setbg
+	setbg -x &
+
+    pkill -1 dwm
+
+else
+	sed -i "s/wal -i .*/#&/" ~/.local/bin/setbg
+	sed -i "s/sleep 1/#&/" ~/.local/bin/setbg
+
+	xrdb -remove ~/.cache/wal/colors.Xresources
+	xrdb -merge ~/.config/x11/Xresources
+	
+	pkill -USR1 -x st
+	i3-msg reload
+
+	pkill -1 dwm
+
+	cp ~/.config/dunst/dunstrc.default ~/.config/dunst/dunstrc
+	killall -SIGKILL dunst && nohup dunst &
+
+
+	sleep 0.4
+
+	notify-send "now using Xresources, and not pywal"
+
+fi

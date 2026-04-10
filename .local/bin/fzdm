@@ -1,0 +1,14 @@
+#!/bin/sh
+# simple sh menu with fzf (or skim)
+
+#finder="fzf"
+finder="sk"
+
+choice=$(echo "start
+switch wm
+shell
+logout" | $finder --header "welcome, $USER!")
+[ "$choice" = "start" ] && startx
+[ "$choice" = "switch wm" ] && wm=$(ls ~/.config/x11/wm | $finder) && ln -sf ~/.config/x11/wm/$wm ~/.config/x11/xinitrc && echo "$wm selected" && sleep 1 && fzdm
+[ "$choice" = "shell" ] && $SHELL
+[ "$choice" = "logout" ] && exit

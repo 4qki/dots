@@ -1,0 +1,29 @@
+#!/bin/sh
+# A screenshotting tool that uses scrot and dmenu.
+pick_opt() {
+    choice="$(echo "full\nselect" | dmenu -p "What to screenshot?")"
+}
+
+{ [ -z "$1" ] && pick_opt ;} || choice="$1"
+
+sf="$HOME/pics/ss/scrot-$(date +%s).jpg"
+mkdir -p "$HOME/pics/ss"
+
+case "$choice" in
+    full)
+        scrot "$sf" || exit
+        ;;
+    select)
+        scrot -s "$sf" || exit
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+# Copy to clipboard
+xclip -selection clipboard -t image/png -i "$sf"
+
+# Notify user and open in nsxiv
+notify-send -i "$sf" "Screenshot saved" "Opening $sf with nsxiv"
+nsxiv "$sf"
