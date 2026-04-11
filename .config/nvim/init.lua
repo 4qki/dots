@@ -6,6 +6,7 @@ vim.pack.add({
     { src = 'https://github.com/marko-cerovac/material.nvim' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
+    { src = 'https://github.com/slugbyte/lackluster.nvim' },
     { src = 'https://github.com/catppuccin/nvim' },
     { src = 'https://github.com/ibhagwan/fzf-lua' },
     { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
@@ -35,7 +36,7 @@ vim.g.maplocalleader = " "
 -- theming
 vim.opt.termguicolors = true        -- enable 24-bit RGB color in the TUI
 require('colorizer').setup()
-vim.cmd.colorscheme('catppuccin-mocha')
+vim.cmd.colorscheme('lackluster')
 
 local highlight_groups = {
     "Normal",
