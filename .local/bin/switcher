@@ -30,4 +30,4 @@ esac
 #echo $choice > ~/.local/share/theme
 echo $choice $bg > ~/.local/share/theme
 pkill -USR1 st &
-#pkill -1 dwm &
+pkill -1 dwm &

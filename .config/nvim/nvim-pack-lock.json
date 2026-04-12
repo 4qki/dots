@@ -16,6 +16,10 @@
       "rev": "92f7366a9315cd386bc4fa4d716fde375dda210f",
       "src": "https://github.com/marko-cerovac/material.nvim"
     },
+    "mellow.nvim": {
+      "rev": "6273b7f0ddf6ac2b75021b3bc0bd8b3305cfeef1",
+      "src": "https://github.com/mellow-theme/mellow.nvim"
+    },
     "modus-themes.nvim": {
       "rev": "17a64464c27c1be605adca13dbe48f2f402fe107",
       "src": "https://github.com/miikanissi/modus-themes.nvim"
@@ -43,6 +47,10 @@
     "telescope.nvim": {
       "rev": "f7c673b8e46e8f233ff581d3624a517d33a7e264",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "vague.nvim": {
+      "rev": "8751181a1aa431b4e8983b0a183afef5cbc08381",
+      "src": "https://github.com/vague-theme/vague.nvim"
     },
     "zenbones.nvim": {
       "rev": "22b7fb75593412e0dc81b4bdefae718e9e84aa82",

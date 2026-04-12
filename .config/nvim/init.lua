@@ -7,6 +7,7 @@ vim.pack.add({
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = 'https://github.com/slugbyte/lackluster.nvim' },
+    { src = 'https://github.com/vague-theme/vague.nvim' },
     { src = 'https://github.com/catppuccin/nvim' },
     { src = 'https://github.com/ibhagwan/fzf-lua' },
     { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
