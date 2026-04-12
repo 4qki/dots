@@ -1,6 +1,6 @@
 #!/bin/sh
 #picom &
-xcompmgr &
+#xcompmgr &
 hwall --restore &
 #pwl restart &
 brightnessctl s 100% &

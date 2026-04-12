@@ -1,118 +1,106 @@
--- minimal, complete neovim config by max (aqki), in only one file
-
--- install plugins
-vim.pack.add({
-    { src = 'https://github.com/miikanissi/modus-themes.nvim' },
-    { src = 'https://github.com/marko-cerovac/material.nvim' },
-    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' },
-    { src = 'https://github.com/neovim/nvim-lspconfig' },
-    { src = 'https://github.com/slugbyte/lackluster.nvim' },
-    { src = 'https://github.com/vague-theme/vague.nvim' },
-    { src = 'https://github.com/catppuccin/nvim' },
-    { src = 'https://github.com/ibhagwan/fzf-lua' },
-    { src = 'https://github.com/norcalli/nvim-colorizer.lua' },
-    { src = 'https://github.com/rose-pine/neovim' },
-})
-
--- options
-vim.opt.clipboard = 'unnamedplus' -- system clipboard
-vim.opt.completeopt = {'menuone', 'noselect', 'popup'}
-vim.cmd("set noswapfile")           -- do not use swapfile
-vim.opt.undofile = true             -- use undofile
-vim.opt.winborder = "rounded"       -- set window border
-vim.opt.tabstop = 4                 -- number of visual spaces per TAB
-vim.opt.softtabstop = 4             -- number of spaces in tab when editing
-vim.opt.shiftwidth = 4              -- insert 4 spaces on a tab
-vim.opt.expandtab = true            -- tabs are spaces, mainly because of Python
-vim.opt.number = true               -- show absolute number
-vim.opt.relativenumber = true       -- add numbers to each line on the left side
-vim.opt.cursorline = true           -- highlight cursor line underneath the cursor horizontally
-vim.opt.splitbelow = true           -- open new vertical split bottom
-vim.opt.splitright = true           -- open new horizontal splits right
-
--- set leader key
+-- Opts
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
--- theming
-vim.opt.termguicolors = true        -- enable 24-bit RGB color in the TUI
-require('colorizer').setup()
-vim.cmd.colorscheme('lackluster')
+vim.o.clipboard = "unnamedplus"
+vim.o.undofile = true
+vim.o.winborder = "rounded"
+vim.o.tabstop = 4
+vim.o.expandtab = true
+vim.o.relativenumber = true
+vim.o.cursorline = true
+vim.o.wrap = false
 
-local highlight_groups = {
-    "Normal",
-    "NormalNC",
-    "LineNr",
-    "Folded",
-    "NonText",
-    "SpecialKey",
-    "VertSplit",
-    "SignColumn",
-    "EndOfBuffer",
-}
+-- Define LSP servers
+local servers = { "lua_ls", "cssls", "rust_analyzer", "clangd", "html" }
 
-for _, group in ipairs(highlight_groups) do
-    vim.api.nvim_set_hl(0, group, { bg = "none", ctermbg = "none" })
+-- Plugins
+vim.pack.add({
+        { src = "https://github.com/slugbyte/lackluster.nvim" },
+        { src = "https://github.com/nvim-mini/mini.nvim" },
+        { src = "https://github.com/saghen/blink.cmp",        version = 'v1.8.0' },
+        { src = "https://github.com/neovim/nvim-lspconfig" },
+        { src = "https://github.com/akinsho/toggleterm.nvim" },
+        { src = "https://github.com/stevearc/oil.nvim" },
+})
+
+require("oil").setup({
+        columns = {
+                "permissions",
+                "icon"
+        },
+        view_options = {
+                show_hidden = true
+        }
+})
+
+require("toggleterm").setup({
+        open_mapping = [[<c-\>]],
+        direction = "float",
+        float_opts = {
+                border = "curved"
+        }
+})
+
+require("mini.pick").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup()
+require("mini.statusline").setup()
+
+-- Funcs
+local function pack_clean()
+        local active_plugins = {}
+        local unused_plugins = {}
+
+        for _, plugin in ipairs(vim.pack.get()) do
+                active_plugins[plugin.spec.name] = plugin.active
+        end
+
+        for _, plugin in ipairs(vim.pack.get()) do
+                if not active_plugins[plugin.spec.name] then
+                        table.insert(unused_plugins, plugin.spec.name)
+                end
+        end
+
+        if #unused_plugins == 0 then
+                print("No unused plugins.")
+                return
+        end
+
+        local choice = vim.fn.confirm("Remove unused plugins?", "&Yes\n&No", 2)
+        if choice == 1 then
+                vim.pack.del(unused_plugins)
+        end
 end
 
--- statusline
-vim.opt.showmode = false            -- hide hints
+-- LSP and autocompletion
+require("blink.cmp").setup({
+        fuzzy = { implementation = "prefer_rust" }
+})
 
--- search
-vim.opt.incsearch = true            -- search as characters are entered
-vim.opt.hlsearch = false            -- do not highlight matches
-vim.opt.ignorecase = true           -- ignore case in searches by default
-vim.opt.smartcase = true            -- but make it case sensitive if an uppercase is entered
-vim.opt.syntax = "on"               -- enable syntax highlighting
+for _, server in ipairs(servers) do
+        vim.lsp.enable(server)
+end
 
--- line wrap
-vim.opt.wrap = false                 -- enable wraparound
-vim.opt.linebreak = true            -- enable linebreaks
--- vim.opt.showbreak = "󱞩 "            -- show where line is broken
-vim.opt.showbreak = "> "            -- show where line is broken
-vim.cmd.filetype("plugin indent on")                -- allows nerdcommenter to work
-
--- keybindings
 local function map(m, k, v)
-	vim.keymap.set(m, k, v, { noremap = true, silent = true })
+        vim.keymap.set(m, k, v, { noremap = true, silent = true })
 end
 
-map('n', '<leader>r', '<cmd>so $MYVIMRC<cr>')               -- reload config file
-map('n', '<leader>,', '<cmd>tabnew $MYVIMRC<cr>')           -- open config file
-map('n', 'S', ':%s//g<Left><Left>')                         -- replace all
+vim.cmd.colorscheme("lackluster")
 
--- fzf stuff
-map('n', '<leader>p', '<cmd>FZF<cr>')
-map('n', '<leader>c', '<cmd>FzfLua colorschemes<cr>')
+-- Keymaps
+map("n", "<leader>lf", vim.lsp.buf.format)
+map("n", "<leader>pc", pack_clean)
+map("n", "<leader>pu", vim.pack.update)
+map("n", "<leader>e", ":Oil<cr>")
 
--- plugin keybinds
-map('n', '<leader>pu', '<cmd>lua vim.pack.update()<cr>')
+map("n", "<leader>r", ":so $MYVIMRC<cr>")
+map("n", "<leader>,", ":tabnew $MYVIMRC<cr>")
+map("n", "S", ":%s//g<Left><Left>")
 
--- move selected lines up and down
-map('v', 'J', ":m'>+<CR>gv=gv")
-map('v', 'K', ':m-2<CR>gv=gv')
+map("n", "<leader>f", ":Pick files<cr>")
+map("n", "<leader>h", ":Pick help<cr>")
+map("n", "<leader>g", ":Pick grep_live<cr>")
+map("n", "<leader>b", ":Pick grep_buffers<cr>")
 
-map('n', '<leader>f', '<cmd>Ex<cr>')            -- open netrw
-
--- setup LSP
-vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('my.lsp', {}),
-	callback = function(args)
-		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
-		if client:supports_method('textDocument/completion') then
-			-- Optional: trigger autocompletion on EVERY keypress. May be slow!
-			local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
-			client.server_capabilities.completionProvider.triggerCharacters = chars
-			vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-		end
-	end,
-})
-
-vim.lsp.enable({
-	"lua_ls", "cssls", "svelte", "tinymist",
-	"rust_analyzer", "clangd", "ruff",
-	"glsl_analyzer", "haskell-language-server", "hlint",
-	"intelephense", "tailwindcss", "ts_ls", "html",
-	"emmet_language_server", "emmet_ls", "solargraph", "zls"
-})
-
+map("v", "J", ":m'>+<CR>gv=gv")
+map("v", "K", ":m-2<CR>gv=gv")
