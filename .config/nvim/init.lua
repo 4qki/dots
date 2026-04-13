@@ -15,12 +15,26 @@ local servers = { "lua_ls", "cssls", "rust_analyzer", "clangd", "html" }
 
 -- Plugins
 vim.pack.add({
-        { src = "https://github.com/slugbyte/lackluster.nvim" },
-        { src = "https://github.com/nvim-mini/mini.nvim" },
-        { src = "https://github.com/saghen/blink.cmp",        version = 'v1.8.0' },
-        { src = "https://github.com/neovim/nvim-lspconfig" },
-        { src = "https://github.com/akinsho/toggleterm.nvim" },
-        { src = "https://github.com/stevearc/oil.nvim" },
+        "https://github.com/slugbyte/lackluster.nvim",
+        "https://github.com/nvim-mini/mini.nvim",
+        "https://github.com/saghen/blink.cmp",
+        "https://github.com/nvim-lua/plenary.nvim",
+        "https://github.com/neovim/nvim-lspconfig",
+        "https://github.com/nvim-telescope/telescope.nvim",
+        "https://github.com/akinsho/toggleterm.nvim",
+        "https://github.com/stevearc/oil.nvim",
+        "https://github.com/lewis6991/gitsigns.nvim",
+})
+
+require("gitsigns").setup({
+        signs = {
+                add = { text = "+" }, ---@diagnostic disable-line: missing-fields
+                change = { text = "~" }, ---@diagnostic disable-line: missing-fields
+                delete = { text = "_" }, ---@diagnostic disable-line: missing-fields
+                topdelete = { text = "‾" }, ---@diagnostic disable-line: missing-fields
+                changedelete = { text = "~" }, ---@diagnostic disable-line: missing-fields
+        },
+        current_line_blame = true,
 })
 
 require("oil").setup({
@@ -41,7 +55,7 @@ require("toggleterm").setup({
         }
 })
 
-require("mini.pick").setup()
+require("mini.icons").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.statusline").setup()
@@ -81,13 +95,12 @@ for _, server in ipairs(servers) do
         vim.lsp.enable(server)
 end
 
-local function map(m, k, v)
-        vim.keymap.set(m, k, v, { noremap = true, silent = true })
-end
-
 vim.cmd.colorscheme("lackluster")
 
 -- Keymaps
+local map = vim.keymap.set
+local builtin = require("telescope.builtin")
+
 map("n", "<leader>lf", vim.lsp.buf.format)
 map("n", "<leader>pc", pack_clean)
 map("n", "<leader>pu", vim.pack.update)
@@ -97,10 +110,11 @@ map("n", "<leader>r", ":so $MYVIMRC<cr>")
 map("n", "<leader>,", ":tabnew $MYVIMRC<cr>")
 map("n", "S", ":%s//g<Left><Left>")
 
-map("n", "<leader>f", ":Pick files<cr>")
-map("n", "<leader>h", ":Pick help<cr>")
-map("n", "<leader>g", ":Pick grep_live<cr>")
-map("n", "<leader>b", ":Pick grep_buffers<cr>")
+map("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+map("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+map("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+map("n", "<leader>ft", builtin.colorscheme, { desc = "Telescope colorscheme" })
 
 map("v", "J", ":m'>+<CR>gv=gv")
 map("v", "K", ":m-2<CR>gv=gv")

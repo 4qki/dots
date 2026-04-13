@@ -10,9 +10,9 @@ PS2="%F{9}%n%f%F{cyan}@%f%F{9}%m%f %F{magenta}%~%f %F{green}$%f "
 #PS1="%F{6}%n%f%F{red}@%f%F{6}%m%f %F{magenta}%~%f %F{green}$%f "
 #PS1="%F{cyan}%n@%m%f %F{green}%~%f %F{foreground}$%f "
 #PS1="%F{green}%n%F{foreground}@%m %F{green}%~%f$%f "
-#PS1="%~%f "
+PS1="%~%f $ "
 #PS1="%F{red}λ%f "
-PS1="%F{green}%n@%m %F{green}%~ %F{cyan}$%f "
+#PS1="%F{green}%n@%m %F{green}%~ %F{cyan}$%f "
 #PS1="%F{red}[%f%F{yellow}%n%f%F{green}@%f%F{blue}%m%f %F{magenta}%~%f%F{red}]%f%F{cyan}$%f "
 
 setopt autocd # any directory typed is automatically cd-ed into.
@@ -94,4 +94,4 @@ alias tm="bash ~/.config/tmux/sessions"
 alias g='git'
 
 # should be last
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh

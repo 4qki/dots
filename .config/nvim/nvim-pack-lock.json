@@ -1,9 +1,12 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "b19413d214068f316c78978b08264ed1c41830ec",
-      "src": "https://github.com/saghen/blink.cmp",
-      "version": "'v1.8.0'"
+      "rev": "456d38d1cd3743926f329204c2340f3e7840aad6",
+      "src": "https://github.com/saghen/blink.cmp"
+    },
+    "gitsigns.nvim": {
+      "rev": "8d82c240f190fc33723d48c308ccc1ed8baad69d",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "lackluster.nvim": {
       "rev": "70dd682e564784893b984deb51dd5ddd263c8cc7",
@@ -20,6 +23,14 @@
     "oil.nvim": {
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "f7c673b8e46e8f233ff581d3624a517d33a7e264",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
     },
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
