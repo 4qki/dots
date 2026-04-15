@@ -23,7 +23,7 @@ export XCURSOR_THEME="Bibata-Original-Classic"
 export XCURSOR_SIZE="24"
 
 # Terminal
-export TERMINAL="st"
+export TERMINAL="alacritty"
 
 # XDG specifications
 export XDG_CONFIG_HOME="$HOME/.config"

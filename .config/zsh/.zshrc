@@ -1,12 +1,13 @@
-# zoomer shell config
+# zsh config
 
 autoload -Uz colors && colors # load colors
 stty -ixon # disable C-s and C-q
 PS1='%F{green}%m%f:%F{blue}[%F{red}%n%f%F{blue}]%f:%F{magenta}%~%f%F{yellow}$%f '
 PS1="%F{cyan}%n%f%F{red}@%f%F{cyan}%m%f %F{green}$%f "
-PS2="%F{9}%n%f%F{cyan}@%f%F{9}%m%f %F{green}$%f "
-PS2="%F{9}%n%f%F{cyan}@%f%F{9}%m%f %F{magenta}%~%f %F{green}$%f "
+#PS2="%F{9}%n%f%F{cyan}@%f%F{9}%m%f %F{green}$%f "
+#PS2="%F{9}%n%f%F{cyan}@%f%F{9}%m%f %F{magenta}%~%f %F{green}$%f "
 #PS2="[%~%f] "
+PS2="%~%f $ "
 #PS1="%F{6}%n%f%F{red}@%f%F{6}%m%f %F{magenta}%~%f %F{green}$%f "
 #PS1="%F{cyan}%n@%m%f %F{green}%~%f %F{foreground}$%f "
 #PS1="%F{green}%n%F{foreground}@%m %F{green}%~%f$%f "
@@ -32,8 +33,7 @@ bindkey -M vicmd V edit-command-line
 eval "$(zoxide init zsh)"
 source ~/.config/shell/aliasrc
 
-
-# zsh smart completion
+# smart completion
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=*' 'm:{a-z}={A-Za-z}'
@@ -79,19 +79,6 @@ function vi-yank-clip {
 zle -N vi-yank-clip
 bindkey -M vicmd 'y' vi-yank-clip
 export KEYTIMEOUT=1
-
-tms(){
-  if command -v tmux &> /dev/null; then
-    if [ -z "$TMUX" ]; then
-      tmux attach || tmux new -s main
-    fi
-  fi
-} && # tms
-
-alias tm="bash ~/.config/tmux/sessions"
-
-# plugin: git
-alias g='git'
 
 # should be last
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
