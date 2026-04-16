@@ -1,5 +1,6 @@
 vim.pack.add({
 	"https://github.com/slugbyte/lackluster.nvim",
+	"https://github.com/nexxeln/vesper.nvim",
 	"https://github.com/vague-theme/vague.nvim",
 	"https://github.com/nvim-mini/mini.nvim",
 	"https://github.com/saghen/blink.cmp",
@@ -7,6 +8,7 @@ vim.pack.add({
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+	"https://github.com/j-hui/fidget.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
 	"https://github.com/stevearc/oil.nvim",
@@ -40,6 +42,7 @@ local ensure_installed = vim.tbl_keys(servers or {})
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+require("fidget").setup()
 
 require("gitsigns").setup({
 	signs = {
