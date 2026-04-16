@@ -2,6 +2,7 @@ vim.pack.add({
 	"https://github.com/slugbyte/lackluster.nvim",
 	"https://github.com/nexxeln/vesper.nvim",
 	"https://github.com/scottmckendry/cyberdream.nvim",
+	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/vague-theme/vague.nvim",
 	"https://github.com/nvim-mini/mini.nvim",
 	"https://github.com/saghen/blink.cmp",
@@ -12,9 +13,11 @@ vim.pack.add({
 	"https://github.com/j-hui/fidget.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
+	"https://github.com/akinsho/toggleterm.nvim",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 })
+
 
 require("vague").setup({
 	transparent = "true",
@@ -22,6 +25,14 @@ require("vague").setup({
 
 require("lackluster").setup({
 	tweak_background = { normal = "none" },
+})
+
+require("vesper").setup({
+	transparent = "true",
+})
+
+require("tokyonight").setup({
+	transparent = "true",
 })
 
 local servers = {
@@ -65,6 +76,16 @@ require("mini.icons").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 require("mini.statusline").setup()
+
+require("toggleterm").setup(
+	{
+		open_mapping = [[<c-\>]],
+		direction = 'float',
+		float_opts = {
+			border = 'curved',
+		}
+	}
+)
 
 require("blink.cmp").setup({
 	completion = {
