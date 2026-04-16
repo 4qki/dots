@@ -1,7 +1,10 @@
 # prompt
 PS1="\w $ "
 
-# zoxide
+# disable C-s and C-q
+stty -ixon
+
+# zoxide setup
 eval "$(zoxide init bash)"
 
 # alias
@@ -24,3 +27,6 @@ complete -F _command doas
 
 # auto cd when entering directory
 shopt -s autocd
+
+# allow comments in commands
+shopt -s interactive_comments
