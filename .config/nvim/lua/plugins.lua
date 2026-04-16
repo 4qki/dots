@@ -1,6 +1,7 @@
 vim.pack.add({
 	"https://github.com/slugbyte/lackluster.nvim",
 	"https://github.com/nexxeln/vesper.nvim",
+	"https://github.com/scottmckendry/cyberdream.nvim",
 	"https://github.com/vague-theme/vague.nvim",
 	"https://github.com/nvim-mini/mini.nvim",
 	"https://github.com/saghen/blink.cmp",
@@ -20,9 +21,7 @@ require("vague").setup({
 })
 
 require("lackluster").setup({
-	tweak_background = {
-		normal = "none",
-	},
+	tweak_background = { normal = "none" },
 })
 
 local servers = {
@@ -86,6 +85,13 @@ require("blink.cmp").setup({
 	sources = {
 		default = { "lsp", "path", "snippets" },
 	},
+})
+
+require("cyberdream").setup({
+	transparent = true,
+	borderless_pickers = false,
+	saturation = 0.95,
+	cache = true,
 })
 
 require("telescope").setup({
