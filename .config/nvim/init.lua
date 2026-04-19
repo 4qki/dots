@@ -2,4 +2,4 @@ require("options")
 require("plugins")
 require("keymaps")
 
-vim.cmd.colorscheme("lackluster-hack")
+vim.cmd.colorscheme("vesper")

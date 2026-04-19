@@ -1,8 +1,8 @@
 #!/bin/sh
 # simple sh menu with fzf (or skim)
 
-#finder="fzf"
-finder="sk"
+finder="fzf"
+#finder="sk"
 
 choice=$(echo "start
 switch wm

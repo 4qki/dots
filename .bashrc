@@ -1,5 +1,5 @@
 # prompt
-PS1="\w $ "
+PS1="\033[32m\w\033[0m % "
 
 # disable C-s and C-q
 stty -ixon

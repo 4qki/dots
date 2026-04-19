@@ -1,26 +1,19 @@
 vim.pack.add({
-	"https://github.com/slugbyte/lackluster.nvim",
-	"https://github.com/nexxeln/vesper.nvim",
-	"https://github.com/scottmckendry/cyberdream.nvim",
-	"https://github.com/folke/tokyonight.nvim",
-	"https://github.com/vague-theme/vague.nvim",
-	"https://github.com/nvim-mini/mini.nvim",
-	"https://github.com/saghen/blink.cmp",
-	"https://github.com/nvim-lua/plenary.nvim",
-	"https://github.com/mason-org/mason.nvim",
-	"https://github.com/mason-org/mason-lspconfig.nvim",
-	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
-	"https://github.com/j-hui/fidget.nvim",
-	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/nvim-telescope/telescope-ui-select.nvim",
-	"https://github.com/akinsho/toggleterm.nvim",
-	"https://github.com/stevearc/oil.nvim",
-	"https://github.com/lewis6991/gitsigns.nvim",
-})
-
-
-require("vague").setup({
-	transparent = "true",
+	{ src = "https://github.com/slugbyte/lackluster.nvim", },
+	{ src = "https://github.com/nexxeln/vesper.nvim", },
+	{ src = "https://github.com/dgox16/oldworld.nvim", },
+	{ src = "https://github.com/nvim-mini/mini.nvim", },
+	{ src = "https://github.com/saghen/blink.cmp", version = "v1.10.2" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim", },
+	{ src = "https://github.com/mason-org/mason.nvim", },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim", },
+	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim", },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", },
+	{ src = "https://github.com/nvim-telescope/telescope-ui-select.nvim" },
+	{ src = "https://github.com/akinsho/toggleterm.nvim" },
+	{ src = "https://github.com/stevearc/oil.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" }
 })
 
 require("lackluster").setup({
@@ -28,10 +21,6 @@ require("lackluster").setup({
 })
 
 require("vesper").setup({
-	transparent = "true",
-})
-
-require("tokyonight").setup({
 	transparent = "true",
 })
 
@@ -52,7 +41,6 @@ local ensure_installed = vim.tbl_keys(servers or {})
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-require("fidget").setup()
 
 require("gitsigns").setup({
 	signs = {
@@ -75,7 +63,7 @@ require("oil").setup({
 require("mini.icons").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
-require("mini.statusline").setup()
+require("mini.notify").setup()
 
 require("toggleterm").setup(
 	{
@@ -108,14 +96,8 @@ require("blink.cmp").setup({
 	},
 })
 
-require("cyberdream").setup({
-	transparent = true,
-	borderless_pickers = false,
-	saturation = 0.95,
-	cache = true,
-})
-
-require("telescope").setup({
+local telescope = require("telescope")
+telescope.setup({
 	defaults = {
 		preview = { treesitter = true },
 		color_devicons = true,
@@ -139,7 +121,7 @@ require("telescope").setup({
 		},
 	},
 })
-require("telescope").load_extension("ui-select")
+telescope.load_extension("ui-select")
 
 for _, server in ipairs(servers) do
 	vim.lsp.enable(server)

@@ -6,7 +6,7 @@ pick_opt() {
 
 { [ -z "$1" ] && pick_opt ;} || choice="$1"
 
-sf="$HOME/pics/ss/scrot-$(date +%s).jpg"
+sf="$HOME/pics/ss/scrot-$(date +%s).png"
 mkdir -p "$HOME/pics/ss"
 
 case "$choice" in
